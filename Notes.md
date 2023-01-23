@@ -1,10 +1,26 @@
-# Access Specifiers
+## Why JAVA
+
+- Unlike C++ Java doesn't support multiple inheritance because of diamond problem.
+- Multiple inheritance can still be done through interfaces.
+- Multi level inheritance is possible.
+
+
+class C extends B extends A is not possible 
+
+A->B->C level
+
+- Java doesn't allow programmers to deal with memory directly which makes it easier, and secured.
+
+## Access Specifiers
 
 1. Private
 2. Public
 3. Protected
+4. Default (Not a keyword)
 
 ## Polymorphism
+
+Polymorphism is the ability of an object to take multiple forms.
 
 1. Compile time Polymorphism (Static Polymorphism)
 2. Runtime Polymorphism (Dynamic Method Dispatch)
@@ -251,3 +267,65 @@ class Program {
 Even after the assignment, the output remains same as before. This happened because `upcastTrial1` which was updated still is the instance of superclass, and event the RHS `childClass` still is an instance of child class, hence output is justified.
 
 ## Overriding
+
+- Methods in Java can be overloaded.
+- The following code 
+
+```java
+import java.util.Scanner;
+import java.util.ArrayList;
+
+class SuperClass {
+    int num1 = 10;
+    int add(int a, int b) {
+        return a + b;
+    }
+}
+class ChildClass extends SuperClass {
+    int num1 = 20;
+    int add(int a, int b) {
+        return (a + b) * 2;
+    }
+}
+
+class Program {
+    public static void main(String[] args) {
+        SuperClass superClass = new SuperClass();
+        ChildClass childClass = new ChildClass();
+        SuperClass upCastTrial1 = new ChildClass();
+
+        System.out.println(superClass.add(2,3));
+        System.out.println(childClass.add(2,3)); // Using the updated add fn
+        System.out.println(upCastTrial1.add(2, 3)); // Using the updated add fn
+
+        System.out.println("===============");
+        
+        System.out.println(superClass.num1);
+        System.out.println(childClass.num1);
+        System.out.println(upCastTrial1.num1);
+    }
+}
+```
+
+- Here you can notice various things
+
+1. Methods can be overriden.
+2. Overriden methods will only get used when instance of child class is created, or Superclass instance refers to Child Class.
+3. Variables can't be overriden.
+4. So updated variable value will only be visible to instance of Child Class.
+
+## Super
+
+whenever a subclass needs to refer to immediate sperclass, it  can do so by the use of super
+
+Sub class can call parent class's constructor.
+
+Super is a keyword, can be used to access, instance variable of parent class
+
+Compiler always call super class constructor by default in parent child relationship
+
+super contructor line has to the  1st line of any constructor
+
+We can call constructors from another constructors a method cannot call constructor
+
+If we don't call constructor explicity, then the default constructor with no parameters gets called.
