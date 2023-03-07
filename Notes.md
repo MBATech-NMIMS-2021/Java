@@ -1,15 +1,29 @@
 ## Why JAVA
 
-- Unlike C++ Java doesn't support multiple inheritance because of diamond problem.
-- Multiple inheritance can still be done through interfaces.
-- Multi level inheritance is possible.
+-   Unlike C++ Java doesn't support multiple inheritance because of diamond problem.
+-   Multiple inheritance can still be done through interfaces.
+-   Multi level inheritance is possible.
 
-
-class C extends B extends A is not possible 
+class C extends B extends A is not possible
 
 A->B->C level
 
-- Java doesn't allow programmers to deal with memory directly which makes it easier, and secured.
+-   Java doesn't allow programmers to deal with memory directly which makes it easier, and secured.
+
+## ArrayList
+
+```java
+import java.util.Scanner;
+import java.util.ArrayList;
+
+class C{
+    public static void main (String[] args){
+        ArrayList<Integer> sam = new ArrayList<Integer>();
+        sam.add(1);
+        System.out.println(sam);
+    }
+}
+```
 
 ## Access Specifiers
 
@@ -27,9 +41,9 @@ Polymorphism is the ability of an object to take multiple forms.
 
 ### Compile Time Polymorphism
 
-- Method Overloading
-- Operator OverLoading
-- Constructor Overloading
+-   Method Overloading
+-   Operator OverLoading
+-   Constructor Overloading
 
 ## Overloading
 
@@ -41,7 +55,7 @@ Polymorphism is the ability of an object to take multiple forms.
 
 **Please note that in Java, operator overloading is not possible. Only + operator is an exception to this rule as it can be used bw string and int.**
 
-- Functions can't be overloaded based on return type, with same parameters.
+-   Functions can't be overloaded based on return type, with same parameters.
 
 ```java
 class OverLoading {
@@ -57,7 +71,7 @@ class OverLoading {
 
 The above code is incorrect.
 
-- This is it's correct version
+-   This is it's correct version
 
 ```java
 class OverLoading {
@@ -71,7 +85,7 @@ class OverLoading {
 }
 ```
 
-- Functions can be overloaded based on the data types of arguments
+-   Functions can be overloaded based on the data types of arguments
 
 ```java
 class OverLoading {
@@ -85,8 +99,8 @@ class OverLoading {
 }
 ```
 
-- Functions can also get overloaded based on the sequence of data types of arguments being passed
-- Below is a code with 2 methods, taking 2 arguments, one double, and an int. Still they are getting overloaded
+-   Functions can also get overloaded based on the sequence of data types of arguments being passed
+-   Below is a code with 2 methods, taking 2 arguments, one double, and an int. Still they are getting overloaded
 
 ```java
 class OverLoading {
@@ -99,19 +113,19 @@ class OverLoading {
 }
 ```
 
-- *Constructors*: Special methods for initializing objects
-- They are of 2 types
+-   _Constructors_: Special methods for initializing objects
+-   They are of 2 types
 
 1. Default Constructor (No parameters)
 2. Parameterized Constructor (1 or more parameters)
 
-- Constructors can be overloaded based on the data type, and count of arguments mentioned
+-   Constructors can be overloaded based on the data type, and count of arguments mentioned
 
 ```java
 
 class OverLoading {
     OverLoading(int a, int b) {
-        
+
     }
     OverLoading(int a) {
 
@@ -268,8 +282,8 @@ Even after the assignment, the output remains same as before. This happened beca
 
 ## Overriding
 
-- Methods in Java can be overloaded.
-- The following code 
+-   Methods in Java can be overloaded.
+-   The following code
 
 ```java
 import java.util.Scanner;
@@ -299,7 +313,7 @@ class Program {
         System.out.println(upCastTrial1.add(2, 3)); // Using the updated add fn
 
         System.out.println("===============");
-        
+
         System.out.println(superClass.num1);
         System.out.println(childClass.num1);
         System.out.println(upCastTrial1.num1);
@@ -307,7 +321,7 @@ class Program {
 }
 ```
 
-- Here you can notice various things
+-   Here you can notice various things
 
 1. Methods can be overriden.
 2. Overriden methods will only get used when instance of child class is created, or Superclass instance refers to Child Class.
@@ -316,7 +330,7 @@ class Program {
 
 ## Super
 
-whenever a subclass needs to refer to immediate sperclass, it  can do so by the use of super
+whenever a subclass needs to refer to immediate sperclass, it can do so by the use of super
 
 Sub class can call parent class's constructor.
 
@@ -324,8 +338,121 @@ Super is a keyword, can be used to access, instance variable of parent class
 
 Compiler always call super class constructor by default in parent child relationship
 
-super contructor line has to the  1st line of any constructor
+super contructor line has to the 1st line of any constructor
 
 We can call constructors from another constructors a method cannot call constructor
 
 If we don't call constructor explicity, then the default constructor with no parameters gets called.
+
+```java
+class SuperClass {
+    SuperClass() {
+        System.out.println("Executing Super class");
+    }
+}
+
+class ChildClass extends SuperClass {
+    ChildClass() {
+        System.out.println("Executing Child Class");
+    }
+}
+
+public class a {
+    public static void main(String[] args) {
+        System.out.println("Sam");
+
+        ChildClass childClass = new ChildClass();
+    }
+}
+```
+
+## Data Abstraction
+
+- Data Abstraction is the property by virtue of which only the essential details are displayed to the user.
+- In layman words, it's the way to write different code for different classes/fns (that mostly is intended to perform similar thing). We are writing different code because we might not wanna do the same thing for all the classes.
+
+There are 2 ways in java we can perform data abstraction
+
+1. Abstract class
+2. Interfaces
+
+### Abstract Class
+
+```java
+abstract class B {
+    abstract void display();
+}
+
+class A{
+    public static void main (String[] args){
+    }
+}
+```
+
+- You can't create instances of an abstract class.
+- We can have abstract class without any abstract method.
+- Methods in abstract class can't be final. (As this will offend the very purpose of data abstraction)
+- If a class contains atleast 1 abstract method, then that class should be compulsorily be declared abstract.
+- If we create child classes of an abstract class, then it must compulsorily override all abstract methods of parent abstract class.
+
+```java
+abstract class B {
+
+    // final int a = 5;
+    abstract void a();
+    void b(){}
+}
+
+class C extends B {
+    // Without the fn of a, program won't run
+    void a() {
+        System.out.println("Runnin");
+    }
+}
+
+class A{
+    public static void main (String[] args){
+    }
+}
+```
+
+### Interfaces
+
+- All methods need to have **no body**.
+
+```java
+interface species {
+    public void speciesDetails(); // Dont put {}, no body
+
+    // public void a(){};
+}
+
+class Humans implements species {
+    public void speciesDetails() {
+        System.out.println("I am a human");
+    }
+}
+
+class C {
+    public static void main(String[] args) {
+        Humans human = new Humans();
+        human.speciesDetails();
+    }
+}
+```
+
+- All variables in an interface are by default public static and final (whose value can't be changed).
+- Interfaces even with empty body is not allowed.
+
+## Super
+
+- By calling `super` in the first line of the constructor function of inherited class.
+- We can also call methods of parent class using `super.methodName();`.
+
+## Strings
+
+- `string.length()` Returns the length of string.
+- `string.toUpperCase()` Returns string with all characters in upper case.
+- `string.toLowerCase()` Returns the strings with all characters in lower case.
+- `string.indexOf("someString")` Returns the starting index of `someString` from string. Returns -1 if the sub string is not found.
+- To convert string to integer, use `int number = Integer.parseInt("123");`
